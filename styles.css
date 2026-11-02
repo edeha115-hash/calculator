@@ -1,0 +1,253 @@
+:root {
+  --bg: black;
+  --dark-white: #ffffff28;
+  --special-pad: rgba(255, 255, 255, 0.124);
+  --white: rgb(255, 255, 255);
+  --dark-white-txt: rgba(255, 255, 255, 0.609);
+  --popup-shdw: rgba(255, 255, 255, 0.141);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 12px;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.calculator, .history {
+  padding: 10px;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.calculator header, .history header {
+  font-size: 30px;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.history header {
+  position: sticky;
+  top: 0;
+}
+
+.calculator header .history-shortcut, .history header .history-cancel {
+  cursor: pointer;
+  display: none;
+}
+
+.calculator .output {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+}
+
+.calculator .output input {
+  flex: 1;
+  outline: none;
+  text-align: right;
+  background: none;
+  border: none;
+  cursor: default;
+}
+
+.calculator .output #cal {
+  font-size: 20px;
+  color: var(--dark-white-txt);
+}
+
+.calculator .output #result {
+  font-size: 50px;
+  color: var(--white);
+}
+
+.calculator .keypads {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+  flex: 1;
+}
+
+.calculator .keypads .group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.calculator .keypads button {
+  min-height: 64px;
+  height: clamp(60px, 9vh, 80px);
+  border: none;
+  border-radius: 5px;
+  background-color: var(--dark-white);
+  color: var(--white);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.calculator .keypads .special-pads {
+  background-color: var(--special-pad);
+}
+
+.calculator .keypads .special-pads:hover {
+  background-color: var(--dark-white);
+}
+
+.calculator .keypads button:hover {
+  background-color: var(--special-pad);
+}
+
+.calculator .keypads .equal {
+  background-color: rgb(53, 53, 208);
+}
+
+.calculator .keypads .equal:hover {
+  background-color: rgba(53, 53, 208, 0.751);
+}
+
+.history {
+  background-color: var(--bg);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  overflow-y: scroll;
+}
+
+.history .history-list {
+  display: flex;
+  flex-direction: column;
+  columns: 10px;
+  margin-top: 10px;
+  padding-bottom: 80px;
+}
+
+.history .history-list .list {
+  padding: 10px;
+  border-radius: 5px;
+  text-align: right;
+  position: relative;
+}
+
+.history .history-list .list:hover {
+  background-color: var(--dark-white);
+}
+
+.history .history-list .list .cal {
+  color: var(--dark-white-txt);
+  overflow-x: scroll;
+  scrollbar-width: thin;
+}
+
+.history .history-list .list .result {
+  font-weight: bold;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+}
+
+.history .history-list .list .popup {
+  position: absolute;
+  background-color: var(--bg);
+  padding: 10px;
+  border-radius: 10px;
+  display: none;
+  margin-left: -230px;
+  margin-bottom: -180px;
+  margin-top: -40px;
+  text-align: left;
+}
+
+.history .history-list .list:hover .popup {
+  display: inline-block;
+  box-shadow: 2px 2px 5px var(--popup-shdw);
+}
+
+.history .history-list .list .popup .trash {
+  cursor: pointer;
+}
+
+.history {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark-white) transparent;
+}
+
+.history::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+.history::-webkit-scrollbar-thumb {
+  background-color: var(--dark-white);
+  border-radius: 999px;
+}
+
+.overlay {
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.393);
+}
+
+
+@media (max-width: 865px) {
+  .calculator header .history-shortcut, .history header .history-cancel {
+    display: inline;
+  }
+
+  .history {
+    top: 1000px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    transition: top 0.5s;
+  }
+
+  .show-history {
+    top: 100px;
+  }
+
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator {
+    min-height: auto;
+  }
+
+  .calculator .keypads {
+    gap: 6px;
+  }
+
+  .calculator .keypads button {
+    height: clamp(56px, 11vw, 72px);
+    font-size: 18px;
+  }
+
+  .calculator .output #result {
+    font-size: 36px;
+  }
+}

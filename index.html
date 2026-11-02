@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Calculating, Mathematics">
+  <title>My Calculator</title>
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+        <div class="calculator">
+
+          <header> 
+            <div class="logo"> My Calculator </div>  
+            <div class="history-shortcut"> <i class="fa fa-history" aria-hidden="true"></i> </div>
+          </header>
+
+          <section class="output">
+            <input type="text" readonly id="cal" autofocus>
+            <input type="text" readonly id="result" autofocus>
+          </section>
+
+          <section class="keypads">
+
+            <button data-role="clear" class="special-pads">CE</button>
+            <button data-role="clear" class="special-pads">C</button>
+            <button data-role="delete" class="special-pads">DEL</button>
+            <button data-role="divide" class="special-pads">/</button>
+
+            <button data-role="7">7</button>
+            <button data-role="8">8</button>
+            <button data-role="9">9</button>
+            <button data-role="multiply" class="special-pads">*</button>
+
+            <button data-role="4">4</button>
+            <button data-role="5">5</button>
+            <button data-role="6">6</button>
+            <button data-role="minus" class="special-pads">-</button>
+
+            <button data-role="1">1</button>
+            <button data-role="2">2</button>
+            <button data-role="3">3</button>
+            <button data-role="add" class="special-pads">+</button>
+ 
+            <div class="group">
+              <button data-role="(">(</button>
+              <button data-role=")">)</button>
+            </div>
+            <button data-role="0">0</button>
+            <button data-role=".">.</button>
+            <button data-role="equal" class="equal">=</button>
+
+          </section>
+
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="history">
+
+          <header>
+
+            <div class="logo"> History </div>  
+            <div class="history-cancel"> &times; </div>
+
+          </header>
+
+          <section class="history-list"></section>
+        </div>
+
+        <script>
+
+          const historyShortcut = document.querySelector('.history-shortcut')
+          const history = document.querySelector('.history')
+          const overlay = document.querySelector('.overlay')
+
+          const historyCancel = document.querySelector('.history-cancel')
+
+          historyShortcut.addEventListener("click", () => { history.classList.add("show-history"); overlay.style.display = "inline"})
+
+          overlay.addEventListener('click', () => { history.classList.remove("show-history"); overlay.style.display = "none" })
+
+          historyCancel.addEventListener('click', () => { history.classList.remove("show-history"); overlay.style.display = "none" })
+
+        </script>
+
+        <script type="module" src="./scripts.js"></script>
+
+</body>
+</html>
